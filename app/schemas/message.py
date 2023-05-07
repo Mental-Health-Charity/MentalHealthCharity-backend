@@ -11,7 +11,7 @@ class MessageBase(BaseModel):
 
 # Properties to receive via API on creation
 class MessageCreate(MessageBase):
-    chat_id: int
+    pass
 
 
 class MessageInDBBase(MessageBase):

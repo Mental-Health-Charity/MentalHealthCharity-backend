@@ -1,11 +1,8 @@
-from typing import Optional
-
 from sqlalchemy.orm import Session
 
 from app.crud.base import CRUDBase
 from app.models.message import Message
 from app.schemas.message import MessageCreate
-from app.models.user import User
 
 class CRUDMessage(CRUDBase[Message, MessageCreate, None]):
 
