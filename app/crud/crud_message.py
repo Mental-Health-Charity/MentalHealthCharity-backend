@@ -30,7 +30,7 @@ class CRUDMessage(CRUDBase[Message, MessageCreate, None]):
             db.query(Message)
             .filter(
                     Message.chat_id == chat_id,
-            ).order_by(Message.creation_date)
+            ).order_by(Message.creation_date.desc())
         )
         return messages
 
