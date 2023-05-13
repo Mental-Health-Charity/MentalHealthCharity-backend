@@ -20,6 +20,9 @@ class CRUDChat(CRUDBase[Chat, ChatCreate, ChatUpdate]):
         db.refresh(db_obj)
         return db_obj
 
+    def get_my(self, db:Session, user: User):
+        return db.query(Chat).filter(Chat.participants.any(User.id.__eq__(user.id)))
+
     def add_participant(
         self, db: Session, *, chat: Chat, user: Optional[User]
     ) -> Chat:

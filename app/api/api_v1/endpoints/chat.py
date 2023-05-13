@@ -3,7 +3,7 @@ from typing import Any
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app import crud, schemas
+from app import crud, schemas, models
 from app.api import deps
 from fastapi_pagination import Page
 from fastapi_pagination.ext.sqlalchemy import paginate
@@ -11,15 +11,21 @@ from fastapi_pagination.ext.sqlalchemy import paginate
 router = APIRouter()
 
 
-@router.get("/", dependencies=[Depends(deps.get_current_active_admin_user)], response_model=Page[schemas.Chat])
+@router.get("/", response_model=Page[schemas.Chat])
 def read_chats(
     db: Session = Depends(deps.get_db),
+    current_user: models.User=Depends(deps.get_current_active_user)
+
 ) -> Any:
     """
     Retrieve users.
     """
-    chats = crud.chat.get_multi(db)
+    if current_user.user_role=="admin":
+        chats = crud.chat.get_multi(db)
+    else:
+        chats = crud.chat.get_my(db, user=current_user)
     return paginate(chats)
+
 
 
 @router.post("/", response_model=schemas.Chat, )
