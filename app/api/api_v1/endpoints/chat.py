@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 
 from app import crud, schemas, models
 from app.api import deps
+from app.helpers.user_enum import UserRoleEnum
 from fastapi_pagination import Page
 from fastapi_pagination.ext.sqlalchemy import paginate
 
@@ -20,7 +21,7 @@ def read_chats(
     """
     Retrieve users.
     """
-    if current_user.user_role=="admin":
+    if current_user.user_role==UserRoleEnum.admin:
         chats = crud.chat.get_multi(db)
     else:
         chats = crud.chat.get_my(db, user=current_user)
