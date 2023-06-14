@@ -1,7 +1,7 @@
 import enum
 
 
-class UserRoleEnum(enum.Enum):
-    USER = "USER"
+class RequiredRoleEnum(enum.Enum):
+    ANYONE = "ANYONE"
     VOLUNTEER = "VOLUNTEER"
     ADMIN = "ADMIN"

@@ -1,13 +1,15 @@
-from typing import Optional, List
+from datetime import datetime
+from typing import List, Optional
+
+from pydantic import BaseModel
 
 from app.schemas.user import User
-from pydantic import BaseModel
-from datetime import datetime
 
 
 # Shared properties
 class MessageBase(BaseModel):
     content: str
+
 
 # Properties to receive via API on creation
 class MessageCreate(MessageBase):

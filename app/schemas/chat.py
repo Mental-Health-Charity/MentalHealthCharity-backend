@@ -1,8 +1,9 @@
-from typing import Optional, List
+from datetime import date
+from typing import List, Optional
+
+from pydantic import BaseModel
 
 from app.schemas.user import User
-from pydantic import BaseModel
-from datetime import date
 
 
 # Shared properties

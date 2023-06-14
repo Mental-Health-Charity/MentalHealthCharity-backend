@@ -26,9 +26,7 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
     def get(self, db: Session, id: Any) -> Optional[ModelType]:
         return db.query(self.model).filter(self.model.id == id).first()
 
-    def get_multi(
-        self, db: Session
-    ) -> List[ModelType]:
+    def get_multi(self, db: Session) -> List[ModelType]:
         return db.query(self.model)
 
     def create(self, db: Session, *, obj_in: CreateSchemaType) -> ModelType:

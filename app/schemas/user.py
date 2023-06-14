@@ -8,9 +8,8 @@ from app.helpers.user_enum import UserRoleEnum
 # Shared properties
 class UserBase(BaseModel):
     email: Optional[EmailStr] = None
-    is_active: Optional[bool] = True
     full_name: Optional[str] = None
-    user_role: Optional[UserRoleEnum] = UserRoleEnum.user
+    user_role: Optional[UserRoleEnum] = UserRoleEnum.USER
 
 
 # Properties to receive via API on creation
