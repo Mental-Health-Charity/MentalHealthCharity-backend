@@ -50,7 +50,7 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
         return 1
 
     def is_admin_user(self, user: User) -> bool:
-        return user.user_role == UserRoleEnum.admin
+        return user.user_role == UserRoleEnum.ADMIN
 
 
 user = CRUDUser(User)
